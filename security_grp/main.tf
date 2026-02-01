@@ -41,8 +41,8 @@ resource "aws_security_group" "internal_load_balancer" {
   
   ingress {
     description     = "HTTP from Frontend"
-    from_port       = 80
-    to_port         = 80
+    from_port       = 3000
+    to_port         = 3000
     protocol        = "tcp"
     security_groups = [aws_security_group.frontend.id]
   }
@@ -172,15 +172,9 @@ resource "aws_security_group" "rds" {
     security_groups = [aws_security_group.backend.id]
   }
 
-  egress {
-    description = "No outbound traffic allowed"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = []
-  }
+  # No egress block = no outbound traffic allowed
 
   tags = {
-         Name = "rds-sg"
+    Name = "rds-sg"
   }
 }
