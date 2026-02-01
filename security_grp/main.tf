@@ -107,7 +107,7 @@ resource "aws_security_group" "frontend" {
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
-    security_groups = [aws_security_group.bastion.id]
+    security_groups = [aws_security_group.bastion.id] #Is the source instance tagged/attached with security group ID bastion
   }
 
   egress {
