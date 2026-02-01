@@ -13,13 +13,17 @@ This VPC setup includes:
 
 
 #Inputs
-NAME                      Description
-cidr_block               cidr_block for vpc 
-name_prefix              name of the subnets         
-availability_zone        zones where subnets are available
-public_cidr              public subnets cidr
-web_tier                 private subnets cidr for frontend running instances
-app_tier                 private subnets cidr for backend running instances   
-data_tier                private subnets cidr for database  
-enable_gateway           variable to define conditional expression for creating elastic ip and natgateway 
-route_cidr               cidr for route table
+# Inputs
+
+| Name               | Description                                                      |
+|-------------------|------------------------------------------------------------------|
+| cidr_block         | CIDR block for VPC                                               |
+| name_prefix        | Name prefix for the subnets                                      |
+| availability_zone  | Availability zones where subnets are created                     |
+| public_cidr        | CIDR blocks for public subnets                                    |
+| web_tier           | CIDR blocks for private subnets used by frontend instances       |
+| app_tier           | CIDR blocks for private subnets used by backend instances        |
+| data_tier          | CIDR blocks for private subnets used by databases                |
+| enable_gateway     | Variable to define conditional creation of Elastic IP and NAT Gateway |
+| route_cidr         | CIDR block for route tables                                       |
+
