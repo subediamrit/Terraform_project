@@ -16,7 +16,7 @@ resource "aws_iam_role" "ec2_role" {
   })
 
   tags = {
-    Name = ec2-role
+    Name = "ec2-role"
   }
 }
 
@@ -32,31 +32,6 @@ resource "aws_iam_role_policy_attachment" "cloudwatch" {
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
 }
 
-# Custom policy for Secrets Manager access
-resource "aws_iam_policy" "secrets_manager" {
-  name        = "secrets-manager-policy"
-  description = "Allow EC2 instances to read secrets from Secrets Manager"
-
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Action = [
-          "secretsmanager:GetSecretValue",
-          "secretsmanager:DescribeSecret"
-        ]
-        Resource = var.secrets_arns
-      }
-    ]
-  })
-}
-
-# Attach custom Secrets Manager policy
-resource "aws_iam_role_policy_attachment" "secrets_manager" {
-  role       = aws_iam_role.ec2_role.name
-  policy_arn = aws_iam_policy.secrets_manager.arn
-}
 
 # IAM Instance Profile
 resource "aws_iam_instance_profile" "ec2_profile" {

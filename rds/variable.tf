@@ -27,21 +27,21 @@ variable "allocated_storage" {
 variable "db_name" {
     description = "db_name of database"
     type = string
-    default = "postgress"
+   
 }
 
 
 variable "db_username" {
     description = "db-username of database"
     type = string
-    default = "amrit"
+    
 }
 
 
 variable "db_password" {
     description = "db_password of database"
     type = string
-    default = "amrit12345"
+  
 }
 
 

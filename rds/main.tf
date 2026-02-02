@@ -8,7 +8,7 @@ resource "aws_db_subnet_group" "data_subnet" {
   }
 }
 
-#dataabasse parameter group
+#database parameter group
 resource "aws_db_parameter_group" "database_parameter" {
   name   = "database-parameter"
   family = "postgres17"
@@ -44,15 +44,21 @@ resource "aws_db_instance" "postgress_db" {
   storage_type      = "gp3"
   storage_encrypted = true
 
+  skip_final_snapshot       = true
+  final_snapshot_identifier = "postgress"
+
   db_name  = var.db_name
   username = var.db_username
   password = var.db_password
   port     = 5432
+ 
+  
 
   vpc_security_group_ids = [var.security_group_id]
   db_subnet_group_name   = aws_db_subnet_group.data_subnet.name
   parameter_group_name   = aws_db_parameter_group.database_parameter.name
   publicly_accessible = false
+  
 
   tags = {
     Name = "postgress_database"

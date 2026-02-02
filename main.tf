@@ -29,5 +29,27 @@ module "rds"{
     source = "./rds"
     data_subnet_ids = module.vpc.data_tier
     security_group_id = module.security_grp.rds_security_group
+    db_name = module.secrets.db_name
+    db_username = module.secrets.db_username
+    db_password = module.secrets.db_password
+
+}
+
+module "secrets" {
+    source = "./secrets"
+}
+
+module "bastion" {
+    source = "./bastion"
+    subnet_id = module.vpc.subnet_id
+    security_group_id = module.security_grp.bastion
+    iam_instance_profile = module.Iam.iam_instance_profile
+
+
+}
+
+module "Iam" {
+    source = "./Iam"
+    
 
 }

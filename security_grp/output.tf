@@ -10,3 +10,7 @@ output "internal_loadbalancer_sg"{
 output "rds_security_group"{
     value = aws_security_group.rds.id
 }
+
+output "bastion" {
+    value = aws_security_group.bastion.id
+}
