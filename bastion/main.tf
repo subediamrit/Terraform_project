@@ -1,21 +1,3 @@
-# Generate SSH key pair
-resource "tls_private_key" "bastion_key" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
-}
-
-# Create AWS key pair
-resource "aws_key_pair" "bastion_key" {
-  key_name   = "bastion-key"
-  public_key = tls_private_key.bastion_key.public_key_openssh
-}
-
-# Save private key to local file
-resource "local_file" "private_key" {
-  content         = tls_private_key.bastion_key.private_key_pem
-  filename        = "${path.module}/bastion-key.pem"
-  file_permission = "0400"
-}
 
 #create ec2 for bastion
 resource "aws_instance" "bastion_ec2" {
