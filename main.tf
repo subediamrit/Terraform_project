@@ -39,17 +39,16 @@ module "secrets" {
     source = "./secrets"
 }
 
-module "bastion" {
-    source = "./bastion"
-    subnet_id = module.vpc.subnet_id
-    security_group_id = module.security_grp.bastion
-    iam_instance_profile = module.Iam.iam_instance_profile
-
-
-}
-
 module "Iam" {
     source = "./Iam"
     
 
+}
+
+module "ec2" {
+    source = "./ec2"
+    web_tier_subnet = module.vpc.web_tier
+    web_tier_security_grp = module.security_grp.web_tier_security_grp
+    app_tier_subnet = module.vpc.app_tier
+    app_tier_security_grp =  module.security_grp.app_tier_security_grp
 }

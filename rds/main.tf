@@ -4,7 +4,7 @@ resource "aws_db_subnet_group" "data_subnet" {
   subnet_ids = var.data_subnet_ids
 
   tags = {
-    Name = "My DB subnet group"
+    Name = " DB subnet group"
   }
 }
 
@@ -44,8 +44,8 @@ resource "aws_db_instance" "postgress_db" {
   storage_type      = "gp3"
   storage_encrypted = true
 
-  skip_final_snapshot       = true
-  final_snapshot_identifier = "postgress"
+  skip_final_snapshot  = true
+
 
   db_name  = var.db_name
   username = var.db_username

@@ -21,6 +21,10 @@ output "web_tier"{
 }
 
 
+output "app_tier"{
+    value = module.vpc.app_tier
+}
+
 output "data_tier"{
     value = module.vpc.data_tier
 }
@@ -56,10 +60,13 @@ output "subnet_id" {
     value = module.vpc.subnet_id
 }
 
-output "bastion" {
-    value = module.security_grp.bastion
+
+
+output "app_tier_security_grp" {
+    value = module.security_grp.app_tier_security_grp
 }
 
-output "iam_instance_profile" {
-    value =  module.Iam.iam_instance_profile
+
+output "web_tier_security_grp" {
+    value = module.security_grp.web_tier_security_grp
 }

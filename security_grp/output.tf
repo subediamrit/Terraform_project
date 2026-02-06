@@ -14,3 +14,12 @@ output "rds_security_group"{
 output "bastion" {
     value = aws_security_group.bastion.id
 }
+
+output "web_tier_security_grp" {
+    value = aws_security_group.frontend.id
+}
+
+output "app_tier_security_grp" {
+    value = aws_security_group.backend.id
+}
+
